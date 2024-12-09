@@ -129,3 +129,16 @@ body {
     background-color: #e0a800; /* Darker yellow */
   }
   
+
+  body {
+    margin: 0;
+    padding: 0;
+    background-image: url('truck.jpg'); /* Path to your image */
+    background-size: cover; /* Ensures the image covers the entire background */
+    background-position: center; /* Centers the image */
+    background-repeat: no-repeat; /* Prevents repeating the image */
+    height: 100vh; /* Ensures it takes the full viewport height */
+    width: 100vw; /* Ensures it takes the full viewport width */
+    overflow: hidden; /* Prevents scrolling if image overflows */
+  }
+  
