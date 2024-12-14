@@ -78,9 +78,12 @@
 
 
 import React from "react";
+import { useNavigate } from "react-router-dom"; // Import useNavigate
 import "./LandingPage.css";
 
 const LandingPage = () => {
+  const navigate = useNavigate(); // Initialize navigate function
+
   return (
     <div className="landing-page">
       {/* Navbar */}
@@ -96,7 +99,12 @@ const LandingPage = () => {
           <a href="#contact" className="nav-item">Contact</a>
         </div>
         <div className="navbar-right">
-          <button className="login-button">Login</button>
+          <button
+            className="login-button"
+            onClick={() => navigate("/login")} // Navigate to login page
+          >
+            Login
+          </button>
         </div>
       </nav>
 
@@ -109,37 +117,14 @@ const LandingPage = () => {
         </div>
       </div>
 
-      {/* Features Section */}
-      <div className="features-section" id="features">
-        <h2>Features</h2>
-        <div className="features-list">
-          <div className="feature-item">
-            <h3>Optimized Routing</h3>
-            <p>Find the fastest and most efficient routes for your deliveries.</p>
-          </div>
-          <div className="feature-item">
-            <h3>Real-time Tracking</h3>
-            <p>Track your shipments in real-time to ensure timely delivery.</p>
-          </div>
-          <div className="feature-item">
-            <h3>Cost Efficiency</h3>
-            <p>Reduce fuel and operational costs with optimized routes.</p>
-          </div>
-        </div>
-      </div>
-
       {/* Footer Section */}
       <footer className="footer">
-        <div className="footer-content">
-          <p>&copy; 2024 ROUTIFY. All rights reserved.</p>
-          <p>
-            <a href="#privacy-policy" className="footer-link">Privacy Policy</a> |{" "}
-            <a href="#terms-of-service" className="footer-link">Terms of Service</a>
-          </p>
-        </div>
+        <p>&copy; 2024 ROUTIFY. All rights reserved.</p>
       </footer>
     </div>
   );
 };
 
 export default LandingPage;
+
+

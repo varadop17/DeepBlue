@@ -85,7 +85,7 @@ body {
 
 .navbar-right .login-button:hover {
   transform: scale(1.1);
-  background-color: #ffcc00; /* Slightly darker gold */
+  background-color: hwb(48 0% 0%); /* Slightly darker gold */
 }
 
 /* Main section styles */
