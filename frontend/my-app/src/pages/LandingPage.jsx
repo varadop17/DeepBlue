@@ -105,6 +105,12 @@ const LandingPage = () => {
           >
             Login
           </button>
+          <button
+            className="signup-button"
+            onClick={() => navigate("/signup")} // Navigate to sign-up page
+          >
+            Sign Up
+          </button>
         </div>
       </nav>
 
