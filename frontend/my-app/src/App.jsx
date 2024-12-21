@@ -120,6 +120,66 @@
 // export default App;
 
 
+// import React from 'react';
+// import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
+// import Login from './components/Login';
+// import Signup from './components/Signup';
+// import LandingPage from './pages/LandingPage';
+// import AdminDashboard from './components/AdminDashboard';
+// import BusinessDashboard from './components/BusinessDashboard';
+// import UserDashboard from './components/UserDashboard';
+// import Header from './components/Header';
+
+// const App = () => {
+//   return (
+//     <Router>
+//       <Routes>
+//         <Route path="/" element={<><Header /><LandingPage /></>} />
+//         <Route path="/home" element={<><Header /><LandingPage /></>} />
+//         <Route path="/signup" element={<><Header /><Signup /></>} />
+//         <Route path="/login" element={<><Header /><Login /></>} />
+//         <Route path="/admin-dashboard" element={<AdminDashboard />} />
+//         <Route path="/business-dashboard" element={<BusinessDashboard />} />
+//         <Route path="/user-dashboard" element={<UserDashboard />} />
+//       </Routes>
+//     </Router>
+//   );
+// };
+
+// export default App;
+
+
+// import React from 'react';
+// import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
+// import Login from './components/Login';
+// import Signup from './components/Signup';
+// import LandingPage from './pages/LandingPage';
+// import AdminDashboard from './components/AdminDashboard';
+// import BusinessDashboard from './components/BusinessDashboard';
+// import UserDashboard from './components/UserDashboard';
+// import QuotePage from './components/QuotePage';
+// import Header from './components/Header';
+
+// const App = () => {
+//   return (
+//     <Router>
+//       <Routes>
+//         <Route path="/" element={<><Header /><LandingPage /></>} />
+//         <Route path="/home" element={<><Header /><LandingPage /></>} />
+//         <Route path="/signup" element={<><Header /><Signup /></>} />
+//         <Route path="/login" element={<><Header /><Login /></>} />
+//         <Route path="/admin-dashboard" element={<AdminDashboard />} />
+//         <Route path="/business-dashboard" element={<BusinessDashboard />} />
+//         <Route path="/user-dashboard" element={<UserDashboard />} />
+//         <Route path="/quote" element={<QuotePage />} />
+//       </Routes>
+//     </Router>
+//   );
+// };
+
+// export default App;
+
+
 import React from 'react';
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 import Login from './components/Login';
@@ -128,6 +188,8 @@ import LandingPage from './pages/LandingPage';
 import AdminDashboard from './components/AdminDashboard';
 import BusinessDashboard from './components/BusinessDashboard';
 import UserDashboard from './components/UserDashboard';
+import QuotePage from './components/QuotePage';
+import Calculator from './components/Calculator';
 import Header from './components/Header';
 
 const App = () => {
@@ -141,6 +203,8 @@ const App = () => {
         <Route path="/admin-dashboard" element={<AdminDashboard />} />
         <Route path="/business-dashboard" element={<BusinessDashboard />} />
         <Route path="/user-dashboard" element={<UserDashboard />} />
+        <Route path="/quote" element={<QuotePage />} />
+        <Route path="/calculator" element={<Calculator />} />
       </Routes>
     </Router>
   );
