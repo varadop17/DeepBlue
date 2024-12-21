@@ -1,19 +1,28 @@
-epest blue/frontend/src/Login.css */
+/* .login-page {
+  height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background: #14213d; /* Dark blue background */
+  /* font-family: 'Arial', sans-serif; */
+  /* color: #000000; Black text color */
+/* } */ */
+
 .login-container {
   display: flex;
   justify-content: center;
   align-items: center;
-  height: 100vh;
-  background-color: #f7f7f7;
+  width: 100%;
 }
 
 .card {
   width: 100%;
   max-width: 400px;
   padding: 2rem;
-  background: #fff;
+  background: #ffffff; /* White background for the card */
   box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
   border-radius: 8px;
+  text-align: center;
 }
 
 .card-title {
@@ -21,6 +30,7 @@ epest blue/frontend/src/Login.css */
   font-weight: 600;
   text-align: center;
   margin-bottom: 1rem;
+  color: #fca311; /* Orange color for the title */
 }
 
 .login-form .form-group {
@@ -32,14 +42,20 @@ epest blue/frontend/src/Login.css */
   padding: 0.75rem;
   border: 1px solid #ccc;
   border-radius: 4px;
-  background-color: #fff; /* White background for input fields */
-  color: #333;
+  background-color: #e5e5e5; /* Light gray background for input fields */
+  color: #000000; /* Black text color */
   font-size: 1rem;
+  transition: background-color 0.3s ease;
 }
 
 .login-form .form-input:focus {
-  border-color: #007bff;
+  border-color: #fca311; /* Orange border on focus */
   outline: none;
+}
+
+.login-form .form-input:hover {
+  background-color: #fca311; /* Orange background on hover */
+  color: #ffffff; /* White text color on hover */
 }
 
 .login-form button {
@@ -47,19 +63,34 @@ epest blue/frontend/src/Login.css */
   padding: 0.75rem;
   border: none;
   border-radius: 4px;
-  background-color: #007bff;
-  color: #fff;
+  background-color: #fca311; /* Orange background for button */
+  color: #ffffff; /* White text color */
   font-size: 1rem;
   cursor: pointer;
   transition: background-color 0.3s ease;
 }
 
 .login-form button:hover {
-  background-color: #0056b3;
+  background-color: #14213d; /* Dark blue background on hover */
 }
 
 .error-text {
-  color: #ff6b6b;
+  color: #ff6b6b; /* Red color for error text */
   text-align: center;
   margin-bottom: 1rem;
+}
+
+h1, h2, h3 {
+  text-align: center;
+  margin-bottom: 20px;
+  color: #fca311; /* Orange color for headings */
+}
+
+a {
+  color: #fca311; /* Orange color for links */
+  text-decoration: none;
+}
+
+a:hover {
+  text-decoration: underline;
 }

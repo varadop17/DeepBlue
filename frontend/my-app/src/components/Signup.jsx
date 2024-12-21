@@ -51,7 +51,7 @@ function Signup() {
       setConfirmPassword("");
       setRole("");
       setTimeout(() => {
-        navigate("/welcome"); // Navigate to a welcome page or dashboard
+        navigate("/"); // Navigate to a welcome page or dashboard
       }, 2000);
     } catch (err) {
       console.error("Error creating account:", err);
