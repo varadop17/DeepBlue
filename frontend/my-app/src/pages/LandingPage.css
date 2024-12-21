@@ -1,46 +1,55 @@
-:root {
-  --primary-color: #0047ab; /* Blue */
-  --secondary-color: #007bff; /* Lighter Blue */
-  --background-color: #f9f9f9; /* Light Gray */
-  --text-color: #333; /* Dark Gray */
-  --white: #fff;
-}
-
-body, html {
+/* General Styles */
+* {
   margin: 0;
   padding: 0;
-  font-family: 'Inter', sans-serif;
-  background-color: var(--background-color);
-  color: var(--text-color);
+  box-sizing: border-box;
+  font-family: "Reem Kufi", sans-serif !important;
 }
 
-main {
-  text-align: center;
-  padding-top: 4rem;
+img {
+  max-width: 100%;
+  height: auto;
 }
 
+body {
+  max-width: 100%;
+  overflow-x: hidden;
+  background-color: #f6f6f6;
+}
+
+/* Hero Section */
 .hero {
   display: flex;
-  flex-direction: column;
   align-items: center;
-  justify-content: center;
-  height: 80vh;
-  background: linear-gradient(to bottom right, var(--primary-color), var(--secondary-color));
-  color: var(--white);
+  justify-content: flex-start;
+  height: 100vh; /* Full screen height */
+  background: linear-gradient(to right, rgba(0, 0, 0, 0.8), rgba(0, 0, 0, 0.1)), url('/mapfinal.png') no-repeat center center;
+  background-size: cover; /* Ensures full width and height */
+  color: var(--text-color-light);
   padding: 2rem;
-  border-radius: 8px;
+  width: 100%;
+  box-sizing: border-box;
+  position: relative;
+}
+
+.hero-content {
+  max-width: 700px;
+  text-align: left;
+  z-index: 2;
+  color: #fff; /* Default light text color */
 }
 
 .hero h1 {
-  font-size: 3rem;
+  font-size: 3.5rem;
   margin-bottom: 1rem;
-  text-shadow: 2px 2px 5px rgba(0, 0, 0, 0.3);
+  text-shadow: 3px 3px 6px rgba(0, 0, 0, 0.5);
+  animation: slideInFromLeft 1s ease-in-out;
 }
 
 .hero p {
-  font-size: 1.2rem;
-  max-width: 700px;
+  font-size: 1.5rem;
   margin-bottom: 2rem;
+  animation: slideInFromRight 1s ease-in-out;
 }
 
 .hero-buttons {
@@ -49,35 +58,55 @@ main {
 }
 
 .hero-buttons .btn-primary {
-  background-color: var(--white);
-  color: var(--primary-color);
+  background-color: var(--primary-color);
+  color: var(--text-color-light);
   border: none;
-  padding: 0.8rem 1.5rem;
+  padding: 1rem 2rem;
   border-radius: 8px;
-  font-size: 1rem;
+  font-size: 1.2rem;
   transition: transform 0.3s, background-color 0.3s;
 }
 
 .hero-buttons .btn-primary:hover {
   background-color: var(--secondary-color);
-  color: var(--white);
+  color: var(--primary-color);
   transform: scale(1.05);
 }
 
 .hero-buttons .btn-secondary {
   background-color: transparent;
-  color: var(--white);
-  border: 2px solid var(--white);
-  padding: 0.8rem 1.5rem;
+  color: var(--text-color-light);
+  border: 2px solid var(--text-color-light);
+  padding: 1rem 2rem;
   border-radius: 8px;
-  font-size: 1rem;
+  font-size: 1.2rem;
   transition: transform 0.3s, background-color 0.3s;
 }
 
 .hero-buttons .btn-secondary:hover {
-  background-color: var(--white);
+  background-color: var(--text-color-light);
   color: var(--primary-color);
   transform: scale(1.05);
+}
+
+/* Adaptive Text Color */
+.hero-content {
+  color: var(--adaptive-text-color);
+}
+
+:root {
+  --adaptive-text-color: #fff;
+}
+
+body.light-mode .hero-content {
+  --adaptive-text-color: #000; /* Switch to darker text for light backgrounds */
+}
+
+/* Content Section */
+.content {
+  background-color: var(--background-color);
+  padding: 2rem;
+  text-align: center;
 }
 
 .stats {
@@ -86,15 +115,22 @@ main {
   gap: 2rem;
   margin: 2rem 0;
   flex-wrap: wrap;
+  animation: fadeIn 2s ease-in-out;
 }
 
 .stat {
-  background: var(--white);
+  background: var(--secondary-color);
   padding: 1rem;
   border-radius: 8px;
   box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
   text-align: center;
   width: 150px;
+  transition: transform 0.3s;
+  color: var(--text-color-dark);
+}
+
+.stat:hover {
+  transform: scale(1.1);
 }
 
 .stat img {
@@ -102,49 +138,115 @@ main {
   margin-bottom: 0.5rem;
 }
 
-.map-illustration {
-  margin-top: 3rem;
+.services {
   padding: 2rem;
+  background-color: var(--darker-shade);
+  animation: fadeIn 2s ease-in-out;
+  color: var(--text-color-light);
 }
 
-.road {
-  position: relative;
-  width: 400px;
-  height: 200px;
-  background: #ddd;
-  border-radius: 12px;
+.services h2 {
+  font-size: 2rem;
+  margin-bottom: 1rem;
+}
+
+.service {
+  background: var(--secondary-color);
+  padding: 1rem;
+  border-radius: 8px;
   box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+  margin-bottom: 1rem;
+  transition: transform 0.3s;
+  color: var(--text-color-dark);
 }
 
-.marker {
-  position: absolute;
-  width: 20px;
-  height: 20px;
-  background: red;
-  border-radius: 50%;
-  animation: bounce 2s infinite;
+.service:hover {
+  transform: scale(1.05);
 }
 
-.marker1 {
-  top: 40px;
-  left: 100px;
+.service h3 {
+  font-size: 1.5rem;
+  margin-bottom: 0.5rem;
 }
 
-.marker2 {
-  top: 90px;
-  left: 170px;
+footer {
+  padding: 1rem;
+  background-color: var(--primary-color);
+  color: var(--text-color-light);
+  text-align: center;
+  animation: fadeIn 2s ease-in-out;
 }
 
-.marker3 {
-  top: 140px;
-  left: 240px;
-}
-
-@keyframes bounce {
-  0%, 100% {
-    transform: translateY(0);
+/* Media Queries for Desktop */
+@media (min-width: 768px) {
+  .hero {
+    height: 100vh;
   }
-  50% {
-    transform: translateY(-10px);
+
+  .hero-content {
+    max-width: 700px;
+    text-align: left;
+    padding-left: 2rem;
+  }
+
+  .hero h1 {
+    font-size: 4.5rem;
+  }
+
+  .hero p {
+    font-size: 1.8rem;
+  }
+
+  .hero-buttons .btn-primary, .hero-buttons .btn-secondary {
+    padding: 1rem 2.5rem;
+    font-size: 1.3rem;
+  }
+
+  .stats {
+    gap: 4rem;
+  }
+
+  .stat {
+    width: 200px;
+  }
+
+  .services, .testimonials {
+    padding: 4rem;
+  }
+
+  .services h2, .testimonials h2 {
+    font-size: 2.5rem;
+  }
+
+  .service h3, .testimonial p {
+    font-size: 1.8rem;
+  }
+}
+
+/* Animations */
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+@keyframes slideInFromLeft {
+  from {
+    transform: translateX(-100%);
+  }
+  to {
+    transform: translateX(0);
+  }
+}
+
+@keyframes slideInFromRight {
+  from {
+    transform: translateX(100%);
+  }
+  to {
+    transform: translateX(0);
   }
 }

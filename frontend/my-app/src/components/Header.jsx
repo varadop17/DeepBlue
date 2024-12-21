@@ -1,22 +1,22 @@
 import React from 'react';
-import './Header.css'; // Create this file for styling if needed
+import { Link } from 'react-router-dom';
+import './Header.css';
 
-const Header = () => {
+function Header() {
   return (
     <header className="header">
-      <div className="header-container">
-        <h1 className="logo">MyApp</h1>
-        <nav className="nav">
-          <ul className="nav-links">
-            <li><a href="/">Home</a></li>
-            <li><a href="/about">About</a></li>
-            <li><a href="/services">Services</a></li>
-            <li><a href="/contact">Contact</a></li>
-          </ul>
-        </nav>
+      <div className="logo">
+        <Link to="/">Logistics Company</Link>
       </div>
+      <nav className="nav">
+        <Link to="/">Home</Link>
+        <Link to="/about">About</Link>
+        <Link to="/services">Services</Link>
+        <Link to="/contact">Contact</Link>
+        <Link to="/signup" className="btn-signup">Sign Up</Link>
+      </nav>
     </header>
   );
-};
+}
 
 export default Header;

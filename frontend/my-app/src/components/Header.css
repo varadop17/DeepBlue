@@ -1,34 +1,54 @@
+:root {
+  --primary-color: #e84d4d; /* Red */
+  --secondary-color: #d4eeee; /* Grey */
+  --background-color: #fff; /* White */
+  --darker-shade: #2f1932; /* Darker Blackish Shade */
+  --accent-color: #84b9cc; /* Accent Blue */
+  --text-color-dark: #2f1932; /* Darker Blackish Shade */
+  --text-color-light: #fff; /* White */
+}
+
 .header {
-    background-color: #4CAF50;
-    color: white;
-    padding: 10px 20px;
-  }
-  
-  .header-container {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-  }
-  
-  .logo {
-    font-size: 24px;
-    font-weight: bold;
-  }
-  
-  .nav-links {
-    list-style: none;
-    display: flex;
-    gap: 15px;
-    margin: 0;
-    padding: 0;
-  }
-  
-  .nav-links a {
-    text-decoration: none;
-    color: white;
-  }
-  
-  .nav-links a:hover {
-    text-decoration: underline;
-  }
-  
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 1rem 2rem;
+  background-color: var(--darker-shade);
+  color: var(--text-color-light);
+  position: fixed;
+  width: 100%;
+  top: 0;
+  z-index: 1000;
+}
+
+.logo a {
+  color: var(--text-color-light);
+  text-decoration: none;
+  font-size: 1.5rem;
+  font-weight: bold;
+}
+
+.nav a {
+  color: var(--text-color-light);
+  text-decoration: none;
+  margin: 0 1rem;
+  transition: color 0.3s;
+}
+
+.nav a:hover {
+  color: var(--primary-color);
+}
+
+.btn-signup {
+  background-color: var(--primary-color);
+  color: var(--text-color-light);
+  padding: 0.5rem 1rem;
+  border-radius: 8px;
+  transition: background-color 0.3s, transform 0.3s;
+}
+
+.btn-signup:hover {
+  background-color: var(--secondary-color);
+  color: var(--primary-color);
+  transform: scale(1.05);
+}
