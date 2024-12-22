@@ -164,6 +164,12 @@ import Header from '../components/Header';
 function LandingPage() {
   const navigate = useNavigate();
 
+  const logout = () => {
+    localStorage.clear()
+    window.location.reload()
+  }
+
+
   const handleGetStarted = () => {
     navigate('/signup');
   };
@@ -183,10 +189,12 @@ function LandingPage() {
         <div className="hero-content">
           <h1>Route Optimization</h1>
           <p>Your trusted partner for smarter and efficient delivery solutions. Optimize routes to save time and reduce costs.</p>
+          
           <div className="hero-buttons">
             <button className="btn-primary" onClick={handleGetStarted}>Get Started</button>
             <button className="btn-secondary" onClick={handleGetQuote}>Get a Quote</button>
             <button className="btn-secondary" onClick={handleCalculator}>Calculator</button>
+            <button className="btn-secondary" onClick={logout}>Logout</button>
           </div>
         </div>
       </section>

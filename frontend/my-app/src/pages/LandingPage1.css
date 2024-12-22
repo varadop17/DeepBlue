@@ -1,0 +1,151 @@
+:root {
+    --primary-color: #0047ab; /* Blue */
+    --secondary-color: #007bff; /* Lighter Blue */
+    --background-color: #f9f9f9; /* Light Gray */
+    --text-color: #333; /* Dark Gray */
+    --white: #fff;
+  }
+  
+  body, html {
+    margin: 0;
+    padding: 0;
+    font-family: 'Inter', sans-serif;
+    background-color: var(--background-color);
+    color: var(--text-color);
+  }
+  
+  main {
+    text-align: center;
+    padding-top: 4rem;
+  }
+  
+  .hero {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    height: 80vh;
+    background: linear-gradient(to bottom right, var(--primary-color), var(--secondary-color));
+    color: var(--white);
+    padding: 2rem;
+    border-radius: 8px;
+  }
+  
+  .hero h1 {
+    font-size: 3rem;
+    margin-bottom: 1rem;
+    text-shadow: 2px 2px 5px rgba(0, 0, 0, 0.3);
+  }
+  
+  .hero p {
+    font-size: 1.2rem;
+    max-width: 700px;
+    margin-bottom: 2rem;
+  }
+  
+  .hero-buttons {
+    display: flex;
+    gap: 1rem;
+  }
+  
+  .hero-buttons .btn-primary {
+    background-color: var(--white);
+    color: var(--primary-color);
+    border: none;
+    padding: 0.8rem 1.5rem;
+    border-radius: 8px;
+    font-size: 1rem;
+    transition: transform 0.3s, background-color 0.3s;
+  }
+  
+  .hero-buttons .btn-primary:hover {
+    background-color: var(--secondary-color);
+    color: var(--white);
+    transform: scale(1.05);
+  }
+  
+  .hero-buttons .btn-secondary {
+    background-color: transparent;
+    color: var(--white);
+    border: 2px solid var(--white);
+    padding: 0.8rem 1.5rem;
+    border-radius: 8px;
+    font-size: 1rem;
+    transition: transform 0.3s, background-color 0.3s;
+  }
+  
+  .hero-buttons .btn-secondary:hover {
+    background-color: var(--white);
+    color: var(--primary-color);
+    transform: scale(1.05);
+  }
+  
+  .stats {
+    display: flex;
+    justify-content: center;
+    gap: 2rem;
+    margin: 2rem 0;
+    flex-wrap: wrap;
+  }
+  
+  .stat {
+    background: var(--white);
+    padding: 1rem;
+    border-radius: 8px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+    text-align: center;
+    width: 150px;
+  }
+  
+  .stat img {
+    width: 50px;
+    margin-bottom: 0.5rem;
+  }
+  
+  .map-illustration {
+    margin-top: 3rem;
+    padding: 2rem;
+  }
+  
+  .road {
+    position: relative;
+    width: 400px;
+    height: 200px;
+    background: #ddd;
+    border-radius: 12px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+  }
+  
+  .marker {
+    position: absolute;
+    width: 20px;
+    height: 20px;
+    background: red;
+    border-radius: 50%;
+    animation: bounce 2s infinite;
+  }
+  
+  .marker1 {
+    top: 40px;
+    left: 100px;
+  }
+  
+  .marker2 {
+    top: 90px;
+    left: 170px;
+  }
+  
+  .marker3 {
+    top: 140px;
+    left: 240px;
+  }
+  
+  @keyframes bounce {
+    0%, 100% {
+      transform: translateY(0);
+    }
+    50% {
+      transform: translateY(-10px);
+    }
+  }
+  
