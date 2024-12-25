@@ -1,11 +1,10 @@
 :root {
-  --primary-color: #e84d4d; /* Red */
-  --secondary-color: #d4eeee; /* Grey */
-  --background-color: #fff; /* White */
-  --darker-shade: #2f1932; /* Darker Blackish Shade */
-  --accent-color: #84b9cc; /* Accent Blue */
-  --text-color-dark: #2f1932; /* Darker Blackish Shade */
-  --text-color-light: #fff; /* White */
+  --primary-color: #fca311; /* Accent Color */
+  --secondary-color: #e5e5e5; /* Light Grey */
+  --background-color: #ffffff; /* White */
+  --darker-shade: #14213d; /* Dark Blue */
+  --text-color-dark: #000000; /* Black */
+  --text-color-light: #ffffff; /* White */
 }
 
 .header {
@@ -19,6 +18,16 @@
   width: 100%;
   top: 0;
   z-index: 1000;
+}
+
+.logo {
+  display: flex;
+  align-items: center;
+}
+
+.logo-image {
+  height: 40px; /* Adjust the height as necessary */
+  margin-right: 10px; /* Space between the logo and the text */
 }
 
 .logo a {

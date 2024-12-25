@@ -20,7 +20,7 @@ body {
   align-items: center;
   justify-content: center;
   height: 100vh; /* Full screen height */
-  background: linear-gradient(to right, rgba(0, 0, 0, 0.8), rgba(0, 0, 0, 0.1)), url('/mapfinal.png') no-repeat center center;
+  background: linear-gradient(to right, rgba(0, 0, 0, 0.8), rgba(0, 0, 0, 0.1)), url('/WhatsApp Image 2024-12-25 at 15.01.02_a837032c.jpg') no-repeat center center;
   background-size: cover; /* Ensures full width and height */
   color: var(--text-color-light);
   padding: 2rem;
