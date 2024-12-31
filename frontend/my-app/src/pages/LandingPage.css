@@ -20,40 +20,47 @@ body {
   align-items: center;
   justify-content: center;
   height: 100vh; /* Full screen height */
-  background: linear-gradient(to right, rgba(0, 0, 0, 0.8), rgba(0, 0, 0, 0.1)), url('/WhatsApp Image 2024-12-25 at 15.01.02_a837032c.jpg') no-repeat center center;
+  background: linear-gradient(to right, rgba(0, 0, 0, 0.8), rgba(0, 0, 0, 0.1)), 
+              url('/WhatsApp Image 2024-12-25 at 15.01.02_a837032c.jpg') no-repeat center center;
   background-size: cover; /* Ensures full width and height */
   color: var(--text-color-light);
   padding: 2rem;
-  width: 100%;
+  width: 100vw; /* Full viewport width */
   box-sizing: border-box;
   position: relative;
+  overflow: hidden; /* Prevents accidental scrollbars */
 }
 
+/* Content inside the hero section */
 .hero-content {
   max-width: 700px;
   text-align: left;
-  z-index: 2;
+  z-index: 2; /* Ensures it stays above the background */
   color: #fff; /* Default light text color */
 }
 
+/* Title Styling */
 .hero h1 {
-  font-size: 3.5rem;
+  font-size: 3.5rem; /* Large title */
   margin-bottom: 1rem;
-  text-shadow: 3px 3px 6px rgba(0, 0, 0, 0.5);
-  animation: slideInFromLeft 1s ease-in-out;
+  text-shadow: 3px 3px 6px rgba(0, 0, 0, 0.5); /* Adds shadow for better readability */
+  animation: slideInFromLeft 1s ease-in-out; /* Slide animation */
 }
 
+/* Paragraph Styling */
 .hero p {
-  font-size: 1.5rem;
+  font-size: 1.5rem; /* Larger paragraph text */
   margin-bottom: 2rem;
-  animation: slideInFromRight 1s ease-in-out;
+  animation: slideInFromRight 1s ease-in-out; /* Slide animation */
 }
 
+/* Button Container */
 .hero-buttons {
   display: flex;
-  gap: 1rem;
+  gap: 1rem; /* Space between buttons */
 }
 
+/* Primary Button */
 .hero-buttons .btn-primary {
   background-color: var(--primary-color);
   color: var(--text-color-light);
@@ -61,15 +68,16 @@ body {
   padding: 1rem 2rem;
   border-radius: 8px;
   font-size: 1.2rem;
-  transition: transform 0.3s, background-color 0.3s;
+  transition: transform 0.3s, background-color 0.3s; /* Smooth transition */
 }
 
 .hero-buttons .btn-primary:hover {
   background-color: var(--secondary-color);
   color: var(--primary-color);
-  transform: scale(1.05);
+  transform: scale(1.05); /* Slight zoom on hover */
 }
 
+/* Secondary Button */
 .hero-buttons .btn-secondary {
   background-color: transparent;
   color: var(--text-color-light);
@@ -77,18 +85,41 @@ body {
   padding: 1rem 2rem;
   border-radius: 8px;
   font-size: 1.2rem;
-  transition: transform 0.3s, background-color 0.3s;
+  transition: transform 0.3s, background-color 0.3s; /* Smooth transition */
 }
 
 .hero-buttons .btn-secondary:hover {
   background-color: var(--text-color-light);
   color: var(--primary-color);
-  transform: scale(1.05);
+  transform: scale(1.05); /* Slight zoom on hover */
 }
 
 /* Adaptive Text Color */
 .hero-content {
-  color: var(--adaptive-text-color);
+  color: var(--adaptive-text-color); /* Uses CSS variable for adaptive colors */
+}
+
+/* Add Keyframe Animations */
+@keyframes slideInFromLeft {
+  from {
+    transform: translateX(-100%);
+    opacity: 0;
+  }
+  to {
+    transform: translateX(0);
+    opacity: 1;
+  }
+}
+
+@keyframes slideInFromRight {
+  from {
+    transform: translateX(100%);
+    opacity: 0;
+  }
+  to {
+    transform: translateX(0);
+    opacity: 1;
+  }
 }
 
 :root {
