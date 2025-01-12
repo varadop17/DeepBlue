@@ -1,0 +1,78 @@
+/* MapPage.css */
+
+/* Container for the map page */
+.map-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 20px;
+  min-height: 100vh;
+  box-sizing: border-box;
+  background-color: #ffffff; /* White */
+}
+
+/* Style for the address input field and button */
+.address-input-container {
+  margin-bottom: 20px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 100%;
+  max-width: 600px;
+}
+
+.address-input-container input {
+  width: 100%;
+  padding: 10px;
+  font-size: 16px;
+  border: 1px solid #14213d; /* Dark Blue */
+  border-radius: 5px;
+  margin-bottom: 10px;
+  color: #000000; /* Black */
+  background-color: #ffffff; /* White */
+}
+
+.address-input-container button {
+  padding: 10px 20px;
+  background-color: #f7931e; /* Accent Color */
+  color: #ffffff; /* White */
+  font-size: 16px;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+.address-input-container button:hover {
+  background-color: #14213d; /* Dark Blue */
+}
+
+/* Style for error message */
+.error-message {
+  color: red;
+  font-size: 16px;
+  margin-top: 10px;
+}
+
+/* Full-screen map container */
+#map {
+  height: 100vh; /* Full viewport height */
+  width: 100%;
+  margin-top: 20px;
+  border: 1px solid #14213d; /* Dark Blue */
+  border-radius: 8px;
+}
+
+/* Button style for going back */
+.back-button {
+  padding: 10px 20px;
+  background-color: #f7931e; /* Accent Color */
+  color: #ffffff; /* White */
+  font-size: 16px;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+.back-button:hover {
+  background-color: #14213d; /* Dark Blue */
+}
