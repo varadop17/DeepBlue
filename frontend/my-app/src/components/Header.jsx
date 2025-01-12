@@ -41,6 +41,8 @@ const Header = () => {
         <Link to="/services">Services</Link>
         <Link to="/contact">Contact</Link>
         <Link to="/login" className="btn-login">Login</Link>
+        <Link to="/dhl-data">DHL Data</Link> {/* New Link */}
+
       </nav>
     </header>
   );
