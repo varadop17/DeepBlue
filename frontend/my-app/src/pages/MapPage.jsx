@@ -1,19 +1,17 @@
 import React, { useState, useEffect } from 'react';
-import L from 'leaflet'; // Import Leaflet
-import { useNavigate } from 'react-router-dom';
+import L from 'leaflet';
+import { useNavigate, useLocation } from 'react-router-dom';
 import './MapPage.css';
 
 const MapPage = () => {
   const [currentPosition, setCurrentPosition] = useState(null);
-  const [address, setAddress] = useState('');
   const [map, setMap] = useState(null);
-  const [marker, setMarker] = useState(null);
-  const [errorMessage, setErrorMessage] = useState('');
-
   const navigate = useNavigate();
+  const location = useLocation();
+  const { selectedPickup, selectedDestination } = location.state || {};
 
-  // Get the user's current location if available
   useEffect(() => {
+    // Get the user's current position
     if (navigator.geolocation) {
       navigator.geolocation.getCurrentPosition(
         (position) => {
@@ -21,100 +19,75 @@ const MapPage = () => {
           setCurrentPosition({ latitude, longitude });
         },
         (error) => {
-          console.error("Error getting location:", error);
+          console.error('Error getting location:', error);
         }
       );
-    } else {
-      console.log("Geolocation is not supported by this browser.");
     }
   }, []);
 
   useEffect(() => {
-    if (currentPosition) {
-      // Initialize the map with the user's current location
-      const mapInstance = L.map('map').setView([currentPosition.latitude, currentPosition.longitude], 13);
+    // Initialize the map
+    if (currentPosition && !map) {
+      const mapInstance = L.map('map').setView(
+        [currentPosition.latitude, currentPosition.longitude],
+        13
+      );
 
-      // Add OpenStreetMap tile layer
       L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
         attribution: '© OpenStreetMap contributors',
       }).addTo(mapInstance);
 
-      // Custom location marker icon using location.png
-      const locationIcon = L.icon({
-        iconUrl: '/location.png', // Path to the image
-        iconSize: [32, 32], // Size of the marker
-        iconAnchor: [16, 32], // Anchor point (adjusted to place marker at the bottom)
-        popupAnchor: [0, -32], // Position of the popup relative to the marker
-      });
-
-      // Add a marker for the user's location with custom icon
-      const userMarker = L.marker([currentPosition.latitude, currentPosition.longitude], { icon: locationIcon }).addTo(mapInstance)
+      // Add user location marker
+      L.marker([currentPosition.latitude, currentPosition.longitude])
+        .addTo(mapInstance)
         .bindPopup('Your location')
         .openPopup();
 
-      // Set map and marker state
       setMap(mapInstance);
-      setMarker(userMarker);
     }
-  }, [currentPosition]);
+  }, [currentPosition, map]);
 
-  const handleAddressChange = (e) => {
-    setAddress(e.target.value);
+  // Function to add a marker
+  const addMarker = (latLng, title, message) => {
+    const marker = L.marker(latLng).addTo(map)
+      .bindPopup(message)
+      .openPopup();
+    return marker;
   };
 
-  const handleSearchAddress = async (e) => {
-    e.preventDefault();
-    setErrorMessage('');
-
-    // Geocoding the address using OpenStreetMap's Nominatim API
-    try {
-      const response = await fetch(
-        `https://nominatim.openstreetmap.org/search?format=json&q=${encodeURIComponent(address)}`
-      );
-      const data = await response.json();
-
-      if (data.length > 0) {
-        const { lat, lon } = data[0]; // Get the first result (best match)
-
-        // If the map and marker exist, update their position
-        if (map && marker) {
-          map.setView([lat, lon], 13); // Center the map on the new location
-          marker.setLatLng([lat, lon]); // Move the marker to the new position
-        } else {
-          const newMarker = L.marker([lat, lon], { icon: locationIcon }).addTo(map)
-            .bindPopup(address)
-            .openPopup();
-          setMarker(newMarker);
-        }
-      } else {
-        setErrorMessage('Address not found. Please try again.');
-      }
-    } catch (err) {
-      console.error('Error fetching geocode data:', err);
-      setErrorMessage('Failed to fetch data. Please try again later.');
+  useEffect(() => {
+    // Add pickup marker
+    if (map && selectedPickup) {
+      const pickupLatLng = [selectedPickup.latitude, selectedPickup.longitude];
+      addMarker(pickupLatLng, 'Pickup Location', selectedPickup.addressLocality || selectedPickup.name);
+      map.setView(pickupLatLng, 13); // Center map on pickup location
     }
-  };
+  }, [map, selectedPickup]);
+
+  useEffect(() => {
+    // Add destination marker
+    if (map && selectedDestination) {
+      const destinationLatLng = [selectedDestination.latitude, selectedDestination.longitude];
+      addMarker(destinationLatLng, 'Destination Location', selectedDestination.addressLocality || selectedDestination.name);
+      map.setView(destinationLatLng, 13); // Center map on destination location
+    }
+  }, [map, selectedDestination]);
 
   return (
     <div className="map-container">
-      <h1>Search Location on Map</h1>
-      <div className="address-input-container">
-        <input
-          type="text"
-          value={address}
-          onChange={handleAddressChange}
-          placeholder="Enter address"
-        />
-        <button onClick={handleSearchAddress}>Search</button>
-      </div>
-
-      {errorMessage && <p className="error-message">{errorMessage}</p>}
-
-      <div id="map"></div> {/* Map container */}
-
-      <button className="back-button" onClick={() => navigate('/pickup')}>Go Back to Pickup Locations</button>
+      <h1>Map View</h1>
+      <h2>Summary</h2>
+      <p><strong>Pickup Location:</strong> {selectedPickup?.addressLocality || selectedPickup?.name}</p>
+      <p><strong>Destination Location:</strong> {selectedDestination?.addressLocality || selectedDestination?.name}</p>
+      <div id="map" className="map-wrapper"></div>
+      <button className="back-button" onClick={() => navigate('/pickup')}>
+        Go Back to Pickup Locations
+      </button>
     </div>
   );
 };
 
 export default MapPage;
+
+
+

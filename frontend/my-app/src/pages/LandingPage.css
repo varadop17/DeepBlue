@@ -8,10 +8,11 @@
 
 body {
   max-width: 100%;
-  overflow-x: hidden;
   background-color: #f6f6f6;
   margin: 0;
   padding: 0;
+  overflow-x: hidden; /* Prevents horizontal scrolling */
+  font-size: calc(1rem + 0.5vw); /* Dynamically adjusts font size */
 }
 
 /* Hero Section */
@@ -20,15 +21,13 @@ body {
   align-items: center;
   justify-content: center;
   height: 100vh; /* Full screen height */
-  background: linear-gradient(to right, rgba(0, 0, 0, 0.8), rgba(0, 0, 0, 0.1)), 
-              url('/WhatsApp Image 2024-12-25 at 15.01.02_a837032c.jpg') no-repeat center center;
-  background-size: cover; /* Ensures full width and height */
+  background: linear-gradient(to right, rgba(0, 0, 0, 0.8), rgba(0, 0, 0, 0.1)),
+              url('/WhatsApp Image 2024-12-25 at 15.01.02_a837032c.jpg') no-repeat center center fixed;
+  background-size: cover; /* Ensures the image covers the viewport */
   color: var(--text-color-light);
   padding: 2rem;
   width: 100vw; /* Full viewport width */
-  box-sizing: border-box;
   position: relative;
-  overflow: hidden; /* Prevents accidental scrollbars */
 }
 
 /* Content inside the hero section */
@@ -41,15 +40,15 @@ body {
 
 /* Title Styling */
 .hero h1 {
-  font-size: 3.5rem; /* Large title */
+  font-size: calc(2.5rem + 1vw); /* Dynamic font size */
   margin-bottom: 1rem;
-  text-shadow: 3px 3px 6px rgba(0, 0, 0, 0.5); /* Adds shadow for better readability */
+  text-shadow: 3px 3px 6px #fca311; /* Adds shadow for better readability */
   animation: slideInFromLeft 1s ease-in-out; /* Slide animation */
 }
 
 /* Paragraph Styling */
 .hero p {
-  font-size: 1.5rem; /* Larger paragraph text */
+  font-size: calc(1rem + 0.5vw); /* Dynamic font size */
   margin-bottom: 2rem;
   animation: slideInFromRight 1s ease-in-out; /* Slide animation */
 }
@@ -67,7 +66,7 @@ body {
   border: none;
   padding: 1rem 2rem;
   border-radius: 8px;
-  font-size: 1.2rem;
+  font-size: calc(1rem + 0.3vw); /* Dynamic font size */
   transition: transform 0.3s, background-color 0.3s; /* Smooth transition */
 }
 
@@ -84,7 +83,7 @@ body {
   border: 2px solid var(--text-color-light);
   padding: 1rem 2rem;
   border-radius: 8px;
-  font-size: 1.2rem;
+  font-size: calc(1rem + 0.3vw); /* Dynamic font size */
   transition: transform 0.3s, background-color 0.3s; /* Smooth transition */
 }
 
@@ -135,6 +134,7 @@ body.light-mode .hero-content {
   background-color: var(--background-color);
   padding: 2rem;
   text-align: center;
+  font-size: calc(1rem + 0.3vw); /* Dynamic font size */
 }
 
 .stats {
@@ -166,69 +166,6 @@ body.light-mode .hero-content {
   margin-bottom: 0.5rem;
 }
 
-.services {
-  padding: 2rem;
-  background-color: var(--darker-shade);
-  animation: fadeIn 2s ease-in-out;
-  color: var(--text-color-light);
-}
-
-.services h2 {
-  font-size: 2rem;
-  margin-bottom: 1rem;
-}
-
-.service {
-  background: var(--secondary-color);
-  padding: 1rem;
-  border-radius: 8px;
-  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
-  margin-bottom: 1rem;
-  transition: transform 0.3s;
-  color: var(--text-color-dark);
-}
-
-.service:hover {
-  transform: scale(1.05);
-}
-
-.service h3 {
-  font-size: 1.5rem;
-  margin-bottom: 0.5rem;
-}
-
-/* Testimonials Section */
-.testimonials {
-  padding: 2rem;
-  background-color: var(--background-color);
-  color: var(--text-color-dark);
-  text-align: center;
-}
-
-.testimonials h2 {
-  font-size: 2rem;
-  margin-bottom: 1rem;
-}
-
-.testimonial {
-  background: var(--secondary-color);
-  padding: 1rem;
-  border-radius: 8px;
-  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
-  margin-bottom: 1rem;
-  transition: transform 0.3s;
-  color: var(--text-color-dark);
-}
-
-.testimonial:hover {
-  transform: scale(1.05);
-}
-
-.testimonial p {
-  font-size: 1rem;
-  margin-bottom: 0.5rem;
-}
-
 footer {
   padding: 1rem;
   background-color: var(--primary-color);
@@ -237,29 +174,14 @@ footer {
   animation: fadeIn 2s ease-in-out;
 }
 
-/* Media Queries for Desktop */
+/* Media Queries for Larger Screens */
 @media (min-width: 768px) {
-  .hero {
-    height: 100vh;
-  }
-
-  .hero-content {
-    max-width: 700px;
-    text-align: left;
-    padding-left: 2rem;
-  }
-
   .hero h1 {
-    font-size: 4.5rem;
+    font-size: calc(3rem + 1vw); /* Larger font for larger screens */
   }
 
   .hero p {
-    font-size: 1.8rem;
-  }
-
-  .hero-buttons .btn-primary, .hero-buttons .btn-secondary {
-    padding: 1rem 2.5rem;
-    font-size: 1.3rem;
+    font-size: calc(1.5rem + 0.5vw); /* Larger font for larger screens */
   }
 
   .stats {
@@ -268,18 +190,6 @@ footer {
 
   .stat {
     width: 200px;
-  }
-
-  .services, .testimonials {
-    padding: 4rem;
-  }
-
-  .services h2, .testimonials h2 {
-    font-size: 2.5rem;
-  }
-
-  .service h3, .testimonial p {
-    font-size: 1.8rem;
   }
 }
 
@@ -292,22 +202,3 @@ footer {
     opacity: 1;
   }
 }
-
-@keyframes slideInFromLeft {
-  from {
-    transform: translateX(-100%);
-  }
-  to {
-    transform: translateX(0);
-  }
-}
-
-@keyframes slideInFromRight {
-  from {
-    transform: translateX(100%);
-  }
-  to {
-    transform: translateX(0);
-  }
-}
-

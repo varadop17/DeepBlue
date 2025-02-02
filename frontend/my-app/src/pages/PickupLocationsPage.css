@@ -1,8 +1,4 @@
 /* General Styles */
-html {
-  font-size: 16px; /* Base font size */
-}
-
 body {
   font-family: "Reem Kufi", sans-serif;
   background-color: #ffffff; /* White */
@@ -28,23 +24,24 @@ body {
 }
 
 h1 {
-  font-size: 3rem;
+  font-size: clamp(2rem, 4vw, 3rem); /* Dynamic size: min 2rem, max 3rem */
   color: #14213d; /* Dark Blue */
   margin-bottom: 2rem;
 }
 
 label {
   display: block;
-  font-size: 1.5rem;
+  font-size: clamp(1rem, 2vw, 1.5rem); /* Dynamic size */
   color: #14213d; /* Dark Blue */
   margin-bottom: 0.6rem;
   text-align: left;
 }
 
-select, input {
+select,
+input {
   width: 100%;
   padding: 1rem;
-  font-size: 1.2rem;
+  font-size: clamp(1rem, 2.5vw, 1.2rem); /* Dynamic size */
   margin-bottom: 1.25rem;
   border: 2px solid #14213d; /* Dark Blue */
   border-radius: 5px;
@@ -53,7 +50,8 @@ select, input {
   transition: border-color 0.3s, box-shadow 0.3s;
 }
 
-select:hover, input:hover {
+select:hover,
+input:hover {
   border-color: #f7931e; /* Accent Color */
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
 }
@@ -65,7 +63,7 @@ ul {
 }
 
 li {
-  font-size: 1.2rem;
+  font-size: clamp(1rem, 2.5vw, 1.2rem); /* Dynamic size */
   margin: 0.6rem 0;
   padding: 1rem;
   background-color: #f7931e; /* Accent Color */
@@ -81,7 +79,7 @@ li:hover {
 
 button {
   padding: 1rem 1.875rem;
-  font-size: 1.2rem;
+  font-size: clamp(1rem, 2.5vw, 1.2rem); /* Dynamic size */
   background-color: #f7931e; /* Accent Color */
   color: #ffffff; /* White */
   border: none;
@@ -122,57 +120,55 @@ button:hover:not(:disabled) {
   }
 }
 
-/* Center-align dropdown and input */
-form {
-  margin-bottom: 1.25rem;
-}
-
-form label {
-  text-align: left;
-  display: block;
-  margin-bottom: 0.6rem;
-}
-
-form select, form input {
-  display: block;
-  margin: 0 auto 1.25rem auto;
-  text-align: center;
-}
-
 /* Responsive Design */
 @media (max-width: 768px) {
   html {
-    font-size: 14px; /* Adjust base font size for smaller screens */
-  }
-
-  h1 {
-    font-size: 2.5rem;
-  }
-
-  button {
-    font-size: 1.1rem;
-  }
-
-  li {
-    font-size: 1.1rem;
+    font-size: 18px; /* Adjust base font size for smaller screens */
   }
 }
 
 @media (max-width: 480px) {
   html {
-    font-size: 12px; /* Further adjust base font size for very small screens */
+    font-size: 16px; /* Further adjust base font size for very small screens */
   }
+}
+.summary-page {
+  text-align: center;
+  padding: 2.5rem;
+  border: 2px solid #14213d; /* Dark Blue */
+  border-radius: 15px;
+  box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
+  background-color: #ffffff; /* White */
+  animation: slideIn 1s ease-in-out;
+  width: 90%;
+  max-width: 600px;
+  margin: auto;
+}
 
-  h1 {
-    font-size: 2rem;
-  }
+.summary-page h1 {
+  font-size: clamp(2rem, 4vw, 3rem); /* Dynamic size: min 2rem, max 3rem */
+  color: #14213d; /* Dark Blue */
+  margin-bottom: 2rem;
+}
 
-  button {
-    font-size: 1rem;
-    padding: 0.875rem 1.5rem;
-  }
+.summary-page p {
+  font-size: clamp(1rem, 2vw, 1.5rem); /* Dynamic size */
+  color: #14213d; /* Dark Blue */
+  margin-bottom: 1rem;
+}
 
-  li {
-    font-size: 1rem;
-  }
+.summary-page button {
+  padding: 1rem 1.875rem;
+  font-size: clamp(1rem, 2.5vw, 1.2rem); /* Dynamic size */
+  background-color: #f7931e; /* Accent Color */
+  color: #ffffff; /* White */
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: transform 0.3s, background-color 0.3s;
+}
+
+.summary-page button:hover {
+  background-color: #14213d; /* Dark Blue */
+  transform: scale(1.05);
 }
