@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react';
 import L from 'leaflet';
 import { useNavigate, useLocation } from 'react-router-dom';
 import './MapPage.css';
+import 'leaflet/dist/leaflet.css';
 
 const MapPage = () => {
   const [currentPosition, setCurrentPosition] = useState(null);
@@ -88,6 +89,3 @@ const MapPage = () => {
 };
 
 export default MapPage;
-
-
-
