@@ -11,8 +11,9 @@ import Calculator from './components/Calculator';
 import Header from './components/Header';
 import DHLDataPage from './service/DHLDataPage';
 import PickupLocationsPage from './pages/PickupLocationsPage';
-import MapPage from './pages/MapPage'; // Import the new MapPage component
+// import MapPage from './pages/MapPage'; // Import the new MapPage component
 import DestinationLocationsPage from './pages/DestinationLocationsPage'; // Import the new DestinationLocationsPage component
+import GoogleMapPage from './pages/GoogleMapPage';
 
 const App = () => {
   return (
@@ -30,7 +31,8 @@ const App = () => {
         <Route path="/dhl-data" element={<DHLDataPage />} />
         <Route path="/pickup" element={<PickupLocationsPage />} />
         <Route path="/destination" element={<DestinationLocationsPage />} /> {/* New route for the combined page */}
-        <Route path="/map" element={<><Header /><MapPage /></>} /> {/* Route for the map page */}
+        {/* <Route path="/map" element={<><Header /><MapPage /></>} /> Route for the map page */}
+        <Route path="/google-map" element={<GoogleMapPage />} /> {/* New route */}
       </Routes>
     </Router>
   );

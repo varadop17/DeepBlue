@@ -73,7 +73,7 @@ const DestinationLocationsPage = () => {
             <h2>Summary</h2>
             <p><strong>Pickup Location:</strong> {selectedPickup.addressLocality || selectedPickup.name}</p>
             <p><strong>Destination Location:</strong> {selectedDestination.addressLocality || selectedDestination.name}</p>
-            <button onClick={() => navigate('/map')}>View Route on Map</button>
+            <button onClick={() => navigate('/google-map')}>View Route on Map</button>
           </div>
         </>
       )}

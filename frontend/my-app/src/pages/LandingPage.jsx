@@ -27,6 +27,10 @@ function LandingPage() {
     navigate('/pickup');  // New function to navigate to PickupLocationsPage
   };
 
+  const handleGoogleMapPage = () => {
+    navigate('/google-map');  // New function to navigate to GoogleMapPage
+  };
+
   return (
     <main>
       <Header />
@@ -41,6 +45,7 @@ function LandingPage() {
             <button className="btn-secondary" onClick={handleCalculator}>Calculator</button>
             <button className="btn-secondary" onClick={logout}>Logout</button>
             <button className="btn-secondary" onClick={handlePickupLocations}>Pickup Locations</button> {/* New button */}
+            <button className="btn-secondary" onClick={handleGoogleMapPage}>Map</button> {/* New button */}
           </div>
         </div>
       </section>
@@ -94,4 +99,3 @@ function LandingPage() {
 }
 
 export default LandingPage;
-
