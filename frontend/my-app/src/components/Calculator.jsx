@@ -1,75 +1,5 @@
-// import React, { useState } from 'react';
-// import './Calculator.css';
-
-// const Calculator = () => {
-//   const [distance, setDistance] = useState('');
-//   const [weight, setWeight] = useState('');
-//   const [serviceType, setServiceType] = useState('standard');
-//   const [cost, setCost] = useState(null);
-
-//   const calculateCost = () => {
-//     let baseCost = 0;
-
-//     if (serviceType === 'standard') {
-//       baseCost = 5;
-//     } else if (serviceType === 'express') {
-//       baseCost = 10;
-//     }
-
-//     const distanceCost = distance * 0.5;
-//     const weightCost = weight * 0.2;
-
-//     const totalCost = baseCost + distanceCost + weightCost;
-//     setCost(totalCost.toFixed(2));
-//   };
-
-//   return (
-//     <div className="calculator-page">
-//       <div className="calculator-container">
-//         <h1 className="calculator-title">Logistics Cost Calculator</h1>
-//         <div className="form-group">
-//           <label>Distance (km)</label>
-//           <input
-//             type="number"
-//             value={distance}
-//             onChange={(e) => setDistance(e.target.value)}
-//             className="form-input"
-//           />
-//         </div>
-//         <div className="form-group">
-//           <label>Weight (kg)</label>
-//           <input
-//             type="number"
-//             value={weight}
-//             onChange={(e) => setWeight(e.target.value)}
-//             className="form-input"
-//           />
-//         </div>
-//         <div className="form-group">
-//           <label>Service Type</label>
-//           <select
-//             value={serviceType}
-//             onChange={(e) => setServiceType(e.target.value)}
-//             className="form-input"
-//           >
-//             <option value="standard">Standard</option>
-//             <option value="express">Express</option>
-//           </select>
-//         </div>
-//         <button className="btn-primary" onClick={calculateCost}>Calculate</button>
-//         {cost !== null && (
-//           <div className="result">
-//             <h2>Estimated Cost: ${cost}</h2>
-//           </div>
-//         )}
-//       </div>
-//     </div>
-//   );
-// };
-
-// export default Calculator;
-
 import React, { useState } from "react";
+import { useNavigate } from 'react-router-dom';
 import "bootstrap/dist/css/bootstrap.min.css";
 import "./calculator.css";
 
@@ -83,6 +13,8 @@ function Calculator() {
     const [paymentType, setPaymentType] = useState("prepaid");
     const [shippingMode, setShippingMode] = useState("air");
     const [result, setResult] = useState(null);
+
+    const navigate = useNavigate();
 
     const calculateRate = () => {
         if (!weight || !dimensions) {
@@ -105,17 +37,6 @@ function Calculator() {
         <div className="container mt-5 calculator-container">
             <h2 className="text-center mb-4">Routify Shipment Rate Calculator</h2>
             <div className="card p-4 shadow-lg">
-                <div className="row">
-                    <div className="col-md-6">
-                        <label className="form-label">Pickup Pincode:</label>
-                        <input type="text" className="form-control" value={pickupPincode} onChange={(e) => setPickupPincode(e.target.value)} />
-                    </div>
-                    <div className="col-md-6">
-                        <label className="form-label">Delivery Pincode:</label>
-                        <input type="text" className="form-control" value={deliveryPincode} onChange={(e) => setDeliveryPincode(e.target.value)} />
-                    </div>
-                </div>
-
                 <div className="row mt-3">
                     <div className="col-md-4">
                         <label className="form-label">Actual Weight (kg):</label>
@@ -183,6 +104,21 @@ function Calculator() {
                     </table>
                 </div>
             )}
+
+            <div className="mt-4 text-center">
+                <button 
+                    className="btn btn-secondary btn-lg" 
+                    onClick={() => {
+                        if (result) {
+                            navigate('/pickup');
+                        } else {
+                            alert("Please calculate the rate first.");
+                        }
+                    }}
+                >
+                    Specify Pickup Location
+                </button>
+            </div>
         </div>
     );
 }
