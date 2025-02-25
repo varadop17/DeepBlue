@@ -12,7 +12,7 @@ body {
   margin: 0;
   padding: 0;
   overflow-x: hidden; /* Prevents horizontal scrolling */
-  font-size: calc(1rem + 0.5vw); /* Dynamically adjusts font size */
+  font-size: 25px; /* Fixed font size to avoid changes on zoom */
 }
 
 /* Hero Section */
@@ -22,9 +22,9 @@ body {
   justify-content: center;
   height: 100vh; /* Full screen height */
   background: linear-gradient(to right, rgba(0, 0, 0, 0.8), rgba(0, 0, 0, 0.1)),
-              url('/WhatsApp Image 2024-12-25 at 15.01.02_a837032c.jpg') no-repeat center center fixed;
+              url('C:\Users\RIDDHI KOLI\DeepBlue\DeepBlue\frontend\my-app\public\Untitled design (7).png') no-repeat center center fixed;
   background-size: cover; /* Ensures the image covers the viewport */
-  color: var(--text-color-light);
+  color: #ffffff; /* Light text color for contrast */
   padding: 2rem;
   width: 100vw; /* Full viewport width */
   position: relative;
@@ -35,62 +35,81 @@ body {
   max-width: 700px;
   text-align: left;
   z-index: 2; /* Ensures it stays above the background */
-  color: #fff; /* Default light text color */
+  margin-top: 15rem; /* Adjust this value to move the content lower */
 }
 
 /* Title Styling */
 .hero h1 {
-  font-size: calc(2.5rem + 1vw); /* Dynamic font size */
-  margin-bottom: 1rem;
-  text-shadow: 3px 3px 6px #fca311; /* Adds shadow for better readability */
+  display: block;
+  font-size: 2em;
+  margin-block-start: 0.67em;
+  margin-block-end: 0.67em;
+  margin-inline-start: 0px;
+  margin-inline-end: 0px;
+  font-weight: bold;
+  unicode-bidi: isolate;
+  font-size: 3.5rem; /* Fixed, readable font size */
+  color: #fca311; /* Yellow font color */
+  text-shadow: 3px 3px 6px #000000; /* Darker shadow for better readability */
   animation: slideInFromLeft 1s ease-in-out; /* Slide animation */
 }
 
 /* Paragraph Styling */
 .hero p {
-  font-size: calc(1rem + 0.5vw); /* Dynamic font size */
+  font-size: 1.2rem; /* Fixed font size */
   margin-bottom: 2rem;
   animation: slideInFromRight 1s ease-in-out; /* Slide animation */
 }
 
-/* Button Container */
+/* Hero Button Container */
 .hero-buttons {
   display: flex;
   gap: 1rem; /* Space between buttons */
+  justify-content: center; /* Centering buttons */
+  align-items: center;
+  width: 100%;
+  max-width: 500px; /* Restricts max width */
+}
+
+/* Standardized Button Styling */
+.hero-buttons .btn-primary,
+.hero-buttons .btn-secondary {
+  flex: 1; /* Ensures equal width */
+  min-width: 180px; /* Prevents shrinking */
+  text-align: center;
+  padding: 1rem 2rem; /* Balanced padding */
+  font-size: 1.2rem;
+  border-radius: 8px;
+  transition: all 0.3s ease-in-out;
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
 
 /* Primary Button */
 .hero-buttons .btn-primary {
   background-color: var(--primary-color);
-  color: var(--text-color-light);
+  color: #ffffff;
   border: none;
-  padding: 1rem 2rem;
-  border-radius: 8px;
-  font-size: calc(1rem + 0.3vw); /* Dynamic font size */
-  transition: transform 0.3s, background-color 0.3s; /* Smooth transition */
 }
 
 .hero-buttons .btn-primary:hover {
   background-color: var(--secondary-color);
   color: var(--primary-color);
-  transform: scale(1.05); /* Slight zoom on hover */
+  transform: scale(1.05);
 }
 
 /* Secondary Button */
 .hero-buttons .btn-secondary {
   background-color: transparent;
-  color: var(--text-color-light);
-  border: 2px solid var(--text-color-light);
-  padding: 1rem 2rem;
-  border-radius: 8px;
-  font-size: calc(1rem + 0.3vw); /* Dynamic font size */
-  transition: transform 0.3s, background-color 0.3s; /* Smooth transition */
+  color: #ffffff;
+  border: 2px solid #ffffff;
 }
 
 .hero-buttons .btn-secondary:hover {
-  background-color: var(--text-color-light);
+  background-color: #ffffff;
   color: var(--primary-color);
-  transform: scale(1.05); /* Slight zoom on hover */
+  transform: scale(1.05);
 }
 
 /* Adaptive Text Color */
@@ -98,7 +117,7 @@ body {
   color: var(--adaptive-text-color); /* Uses CSS variable for adaptive colors */
 }
 
-/* Add Keyframe Animations */
+/* Keyframe Animations */
 @keyframes slideInFromLeft {
   from {
     transform: translateX(-100%);
@@ -134,7 +153,7 @@ body.light-mode .hero-content {
   background-color: var(--background-color);
   padding: 2rem;
   text-align: center;
-  font-size: calc(1rem + 0.3vw); /* Dynamic font size */
+  font-size: 1.2rem; /* Fixed font size */
 }
 
 .stats {
@@ -177,11 +196,11 @@ footer {
 /* Media Queries for Larger Screens */
 @media (min-width: 768px) {
   .hero h1 {
-    font-size: calc(3rem + 1vw); /* Larger font for larger screens */
+    font-size: 4.5rem; /* Larger fixed font size for larger screens */
   }
 
   .hero p {
-    font-size: calc(1.5rem + 0.5vw); /* Larger font for larger screens */
+    font-size: 1.5rem; /* Larger fixed font size for larger screens */
   }
 
   .stats {

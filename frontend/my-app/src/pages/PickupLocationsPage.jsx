@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import axios from 'axios';
 import { useNavigate } from 'react-router-dom';
 import './PickupLocationsPage.css';
+import Header from '../components/Header'; // Import the Header component
 
 const PickupLocationsPage = () => {
   const [countryCode, setCountryCode] = useState('');
@@ -13,35 +14,35 @@ const PickupLocationsPage = () => {
   const navigate = useNavigate();
 
   const countries = [
-        { code: "IN", name: "India" },
-        { code: "AT", name: "Austria" },
-        { code: "BE", name: "Belgium" },
-        { code: "BG", name: "Bulgaria" },
-        { code: "CY", name: "Cyprus" },
-        { code: "CZ", name: "Czechia" },
-        { code: "DE", name: "Germany" },
-        { code: "DK", name: "Denmark" },
-        { code: "EE", name: "Estonia" },
-        { code: "ES", name: "Spain" },
-        { code: "FI", name: "Finland" },
-        { code: "FR", name: "France" },
-        { code: "GB", name: "United Kingdom" },
-        { code: "GR", name: "Greece" },
-        { code: "HR", name: "Croatia" },
-        { code: "HU", name: "Hungary" },
-        { code: "IT", name: "Italy" },
-        { code: "LT", name: "Lithuania" },
-        { code: "LU", name: "Luxembourg" },
-        { code: "LV", name: "Latvia" },
-        { code: "NL", name: "Netherlands" },
-        { code: "NO", name: "Norway" },
-        { code: "PL", name: "Poland" },
-        { code: "PT", name: "Portugal" },
-        { code: "RO", name: "Romania" },
-        { code: "SE", name: "Sweden" },
-        { code: "SI", name: "Slovenia" },
-        { code: "SK", name: "Slovakia" },
-      ];
+    { code: "IN", name: "India" },
+    { code: "AT", name: "Austria" },
+    { code: "BE", name: "Belgium" },
+    { code: "BG", name: "Bulgaria" },
+    { code: "CY", name: "Cyprus" },
+    { code: "CZ", name: "Czechia" },
+    { code: "DE", name: "Germany" },
+    { code: "DK", name: "Denmark" },
+    { code: "EE", name: "Estonia" },
+    { code: "ES", name: "Spain" },
+    { code: "FI", name: "Finland" },
+    { code: "FR", name: "France" },
+    { code: "GB", name: "United Kingdom" },
+    { code: "GR", name: "Greece" },
+    { code: "HR", name: "Croatia" },
+    { code: "HU", name: "Hungary" },
+    { code: "IT", name: "Italy" },
+    { code: "LT", name: "Lithuania" },
+    { code: "LU", name: "Luxembourg" },
+    { code: "LV", name: "Latvia" },
+    { code: "NL", name: "Netherlands" },
+    { code: "NO", name: "Norway" },
+    { code: "PL", name: "Poland" },
+    { code: "PT", name: "Portugal" },
+    { code: "RO", name: "Romania" },
+    { code: "SE", name: "Sweden" },
+    { code: "SI", name: "Slovenia" },
+    { code: "SK", name: "Slovakia" },
+  ];
 
   const fetchLocations = async (locality) => {
     setLoading(true);
@@ -73,6 +74,7 @@ const PickupLocationsPage = () => {
 
   return (
     <div className="pickup-locations-page">
+      <Header /> {/* Add the Header component here */}
       <h1>Pickup Locations</h1>
       
       <label>
