@@ -108,15 +108,6 @@ const LoginPage = () => {
             />
             Regular Customer
           </label>
-          {/* <label>
-            <input
-              type="radio"
-              name="userType"
-              checked={formData.userType === "Admin"}
-              onChange={() => handleUserTypeChange("Admin")}
-            />
-            Admin
-          </label> */}
           <label>
             <input
               type="radio"

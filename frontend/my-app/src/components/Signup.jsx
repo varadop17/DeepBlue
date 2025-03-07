@@ -386,40 +386,40 @@ function Signup() {
   const navigate = useNavigate();
 
   // ✅ Send OTP
-  const sendOtp = async () => {
-    try {
-      if (!window.recaptchaVerifier) {
-        window.recaptchaVerifier = new RecaptchaVerifier(auth, "recaptcha", {
-          size: "normal",
-          callback: (response) => {
-            console.log("reCAPTCHA verified:", response);
-          },
-          "expired-callback": () => {
-            console.log("reCAPTCHA expired. Please try again.");
-          },
-        });
-      }
+  // const sendOtp = async () => {
+  //   try {
+  //     if (!window.recaptchaVerifier) {
+  //       window.recaptchaVerifier = new RecaptchaVerifier(auth, "recaptcha", {
+  //         size: "normal",
+  //         callback: (response) => {
+  //           console.log("reCAPTCHA verified:", response);
+  //         },
+  //         "expired-callback": () => {
+  //           console.log("reCAPTCHA expired. Please try again.");
+  //         },
+  //       });
+  //     }
 
-      const confirmation = await signInWithPhoneNumber(auth, phone, window.recaptchaVerifier);
-      setUser(confirmation);
-      console.log("OTP sent successfully");
-    } catch (err) {
-      console.error("Error sending OTP:", err);
-      setError("Failed to send OTP. Try again.");
-    }
-  };
+  //     const confirmation = await signInWithPhoneNumber(auth, phone, window.recaptchaVerifier);
+  //     setUser(confirmation);
+  //     console.log("OTP sent successfully");
+  //   } catch (err) {
+  //     console.error("Error sending OTP:", err);
+  //     setError("Failed to send OTP. Try again.");
+  //   }
+  // };
 
-  // ✅ Verify OTP
-  const verifyOtp = async () => {
-    try {
-      const data = await user.confirm(otp);
-      console.log("OTP verified successfully:", data);
-      toast.success("Phone number verified successfully!");
-    } catch (err) {
-      console.error("Error verifying OTP:", err);
-      setError("Failed to verify OTP. Please try again.");
-    }
-  };
+  // // ✅ Verify OTP
+  // const verifyOtp = async () => {
+  //   try {
+  //     const data = await user.confirm(otp);
+  //     console.log("OTP verified successfully:", data);
+  //     toast.success("Phone number verified successfully!");
+  //   } catch (err) {
+  //     console.error("Error verifying OTP:", err);
+  //     setError("Failed to verify OTP. Please try again.");
+  //   }
+  // };
 
   // ✅ Google Authentication
   const handleClick = () => {
@@ -506,7 +506,7 @@ function Signup() {
       
       {/* ✅ Phone Authentication */}
       <br />
-      <div className="phone-signin">
+      {/* <div className="phone-signin">
         <div className="phone-content">
           <PhoneInput
             country={"us"}
@@ -526,7 +526,7 @@ function Signup() {
           <br />
           <Button onClick={verifyOtp} style={{ marginTop: "10px" }} variant="success">Verify OTP</Button>
         </div>
-      </div>
+      </div> */}
       
       {/* ✅ Email/Password Signup */}
       <div className="card">
@@ -579,7 +579,6 @@ function Signup() {
             >
               <option value="">Select role</option>
               <option value="customer">Customer</option>
-              <option value="admin">Admin</option>
               <option value="business">Business</option>
             </select>
           </div>
