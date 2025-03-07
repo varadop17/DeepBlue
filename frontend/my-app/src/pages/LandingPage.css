@@ -22,7 +22,7 @@ body {
   justify-content: center;
   height: 100vh; /* Full screen height */
   background: linear-gradient(to right, rgba(0, 0, 0, 0.8), rgba(0, 0, 0, 0.1)),
-              url('C:\Users\suman\OneDrive\.vscode\Deep_B\DeepBlue\frontend\my-app\public\Untitled design (7).png') no-repeat center center fixed;
+              url('Untitled design (7).png') no-repeat center center fixed;
   background-size: cover; /* Ensures the image covers the viewport */
   color: #ffffff; /* Light text color for contrast */
   padding: 2rem;
@@ -35,7 +35,7 @@ body {
   max-width: 700px;
   text-align: left;
   z-index: 2; /* Ensures it stays above the background */
-  margin-top: 15rem; /* Adjust this value to move the content lower */
+  margin-top: 2rem; /* Adjust this value to move the content lower */
 }
 
 /* Title Styling */
@@ -115,6 +115,12 @@ body {
 /* Adaptive Text Color */
 .hero-content {
   color: var(--adaptive-text-color); /* Uses CSS variable for adaptive colors */
+}
+
+.welcome {
+  text-align: left;
+  width: 100%; /* Ensure it spans the full width */
+  margin: 0; /* Remove any default margin */
 }
 
 /* Keyframe Animations */
