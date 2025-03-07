@@ -110,7 +110,7 @@ function Calculator() {
                     className="btn btn-secondary btn-lg" 
                     onClick={() => {
                         if (result) {
-                            navigate('/pickup');
+                            navigate('/google-map');
                         } else {
                             alert("Please calculate the rate first.");
                         }

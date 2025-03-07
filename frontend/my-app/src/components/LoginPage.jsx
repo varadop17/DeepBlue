@@ -108,7 +108,7 @@ const LoginPage = () => {
             />
             Regular Customer
           </label>
-          <label>
+          {/* <label>
             <input
               type="radio"
               name="userType"
@@ -116,7 +116,7 @@ const LoginPage = () => {
               onChange={() => handleUserTypeChange("Admin")}
             />
             Admin
-          </label>
+          </label> */}
           <label>
             <input
               type="radio"

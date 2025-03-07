@@ -416,35 +416,35 @@ function LandingPage() {
     navigate('/google-map');
   };
 
-  const handleDistanceMatrix = async () => {
-    const apiKey = 'AIzaSyByngCvU0KITYYtIITq4CKlZTnruya53UA';
-    const url = `https://maps.googleapis.com/maps/api/distancematrix/json?origins=${encodeURIComponent(origin)}&destinations=${encodeURIComponent(destination)}&key=${apiKey}`;
+  // const handleDistanceMatrix = async () => {
+  //   const apiKey = 'AIzaSyByngCvU0KITYYtIITq4CKlZTnruya53UA';
+  //   const url = `https://maps.googleapis.com/maps/api/distancematrix/json?origins=${encodeURIComponent(origin)}&destinations=${encodeURIComponent(destination)}&key=${apiKey}`;
 
-    try {
-      const response = await axios.get(url);
-      const distanceData = response.data.rows[0].elements[0].distance.text;
-      setDistance(distanceData);
-      alert(`Distance: ${distanceData}`);
-    } catch (error) {
-      console.error('Error fetching distance matrix:', error);
-      alert('Failed to fetch distance. Please try again.');
-    }
-  };
+  //   try {
+  //     const response = await axios.get(url);
+  //     const distanceData = response.data.rows[0].elements[0].distance.text;
+  //     setDistance(distanceData);
+  //     alert(`Distance: ${distanceData}`);
+  //   } catch (error) {
+  //     console.error('Error fetching distance matrix:', error);
+  //     alert('Failed to fetch distance. Please try again.');
+  //   }
+  // };
 
-  const handleGeocode = async () => {
-    const apiKey = 'AIzaSyByngCvU0KITYYtIITq4CKlZTnruya53UA';
-    const url = `https://maps.googleapis.com/maps/api/geocode/json?address=${encodeURIComponent(address)}&key=${apiKey}`;
+  // const handleGeocode = async () => {
+  //   const apiKey = 'AIzaSyByngCvU0KITYYtIITq4CKlZTnruya53UA';
+  //   const url = `https://maps.googleapis.com/maps/api/geocode/json?address=${encodeURIComponent(address)}&key=${apiKey}`;
 
-    try {
-      const response = await axios.get(url);
-      const location = response.data.results[0].geometry.location;
-      setCoordinates(location);
-      alert(`Coordinates: ${location.lat}, ${location.lng}`);
-    } catch (error) {
-      console.error('Error fetching geocode:', error);
-      alert('Failed to fetch coordinates. Please try again.');
-    }
-  };
+  //   try {
+  //     const response = await axios.get(url);
+  //     const location = response.data.results[0].geometry.location;
+  //     setCoordinates(location);
+  //     alert(`Coordinates: ${location.lat}, ${location.lng}`);
+  //   } catch (error) {
+  //     console.error('Error fetching geocode:', error);
+  //     alert('Failed to fetch coordinates. Please try again.');
+  //   }
+  // };
 
   return (
     <main>
@@ -456,15 +456,15 @@ function LandingPage() {
           
           <div className="hero-buttons">
             <button className="btn-primary" onClick={handleGetStarted}>Get Started</button>
-            <button className="btn-secondary" onClick={handleGetQuote}>Get a Quote</button>
-            <button className="btn-secondary" onClick={handleCalculator}>Calculator</button>
-            <button className="btn-secondary" onClick={logout}>Logout</button>
-            <button className="btn-secondary" onClick={handlePickupLocations}>Pickup Locations</button>
+            {/* <button className="btn-secondary" onClick={handleGetQuote}>Get a Quote</button> */}
+            <button className="btn-secondary" onClick={handleCalculator}>Get a Quote</button>
+            {/* <button className="btn-secondary" onClick={logout}>Logout</button> */}
+            {/* <button className="btn-secondary" onClick={handlePickupLocations}>Pickup Locations</button> */}
             <button className="btn-secondary" onClick={handleGoogleMapPage}>Map</button>
           </div>
         </div>
       </section>
-      <section className="content">
+      {/* <section className="content">
         <section className="distance-matrix">
           <h2>Calculate Distance</h2>
           <input
@@ -499,7 +499,7 @@ function LandingPage() {
         </section>
         
         
-      </section>
+      </section> */}
       <footer>
         <p>&copy; 2023 Logistics Company. All rights reserved.</p>
       </footer>
