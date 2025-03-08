@@ -115,8 +115,9 @@ function Signup() {
       setConfirmPassword("");
       setRole("");
       setTimeout(() => {
-        navigate("/");
+        navigate("/login");
       }, 2000);
+      
     } catch (err) {
       console.error("Error creating account:", err);
       if (err.code === "auth/email-already-in-use") {
