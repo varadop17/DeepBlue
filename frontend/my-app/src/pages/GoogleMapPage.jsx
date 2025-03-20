@@ -355,8 +355,7 @@ const GoogleMapPage = () => {
         </button>
       </div>
 
-      <LoadScript googleMapsApiKey="AIzaSyByngCvU0KITYYtIITq4CKlZTnruya53UA
-">
+      <LoadScript googleMapsApiKey="AIzaSyByngCvU0KITYYtIITq4CKlZTnruya53UA">
         <GoogleMap mapContainerStyle={containerStyle} center={center} zoom={5}>
           {directions && <DirectionsRenderer directions={directions} />}
 
