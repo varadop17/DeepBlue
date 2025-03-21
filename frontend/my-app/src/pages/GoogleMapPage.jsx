@@ -1,201 +1,3 @@
-// import React, { useState } from "react";
-// import { GoogleMap, LoadScript, DirectionsRenderer, Marker } from "@react-google-maps/api";
-// import axios from "axios";
-
-// const containerStyle = { width: "100%", height: "500px" };
-// const center = { lat: 19.076, lng: 72.8777 };
-
-// const MapComponent = () => {
-//     const [directions, setDirections] = useState([]);
-//     const [source, setSource] = useState("");
-//     const [destination, setDestination] = useState("");
-//     const [travelTime, setTravelTime] = useState("");
-//     const [distance, setDistance] = useState("");
-//     const [traffic, setTraffic] = useState("");
-//     const [evStations, setEvStations] = useState([]);
-//     const [bestRouteIndex, setBestRouteIndex] = useState(0);
-//     const [routeSteps, setRouteSteps] = useState([]);
-//     const [isModalOpen, setIsModalOpen] = useState(false); // Modal state
-
-//     const fetchOptimizedRoute = async () => {
-//         if (!source || !destination) return alert("Enter source and destination");
-
-//         try {
-//             const response = await axios.get("http://localhost:5000/optimize-route", {
-//                 params: { source, destination }
-//             });
-
-//             const data = response.data;
-//             setTraffic(data.traffic_conditions);
-//             setEvStations(data.ev_stations);
-
-//             const directionsService = new window.google.maps.DirectionsService();
-//             directionsService.route(
-//                 {
-//                     origin: source,
-//                     destination: destination,
-//                     travelMode: window.google.maps.TravelMode.DRIVING,
-//                     provideRouteAlternatives: true,
-//                 },
-//                 (result, status) => {
-//                     if (status === "OK") {
-//                         const routes = result.routes.map(route => ({ ...result, routes: [route] }));
-//                         setDirections(routes);
-//                         findBestRouteGA(routes);
-//                     } else {
-//                         console.error(`Error fetching directions: ${status}`);
-//                     }
-//                 }
-//             );
-
-//         } catch (error) {
-//             console.error("Error fetching route:", error);
-//         }
-//     };
-
-//     const findBestRouteGA = (routes) => {
-//         const weightDistance = 0.4;
-//         const weightTime = 0.3;
-//         const weightEVStations = 0.2;
-//         const weightTraffic = 0.1;
-
-//         const fitnessScores = routes.map((route, index) => {
-//             const leg = route.routes[0].legs[0];
-//             const routeDistance = parseFloat(leg.distance.text.replace(" km", ""));
-//             const routeTime = parseFloat(leg.duration.text.replace(" mins", ""));
-//             const evCount = evStations.filter(station => station.routeIndex === index).length;
-//             const trafficPenalty = traffic === "High" ? 1.5 : traffic === "Medium" ? 1.2 : 1.0;
-
-//             return (routeDistance * weightDistance) + 
-//                    (routeTime * weightTime * trafficPenalty) - 
-//                    (evCount * weightEVStations);
-//         });
-
-//         const optimalIndex = fitnessScores.indexOf(Math.min(...fitnessScores));
-//         setBestRouteIndex(optimalIndex);
-
-//         const bestLeg = routes[optimalIndex].routes[0].legs[0];
-//         setDistance(bestLeg.distance.text);
-//         setTravelTime(bestLeg.duration.text);
-
-//         const steps = bestLeg.steps.map((step, i) => ({
-//             instruction: step.instructions.replace(/<[^>]+>/g, ""),
-//             distance: step.distance.text,
-//             duration: step.duration.text,
-//         }));
-
-//         setRouteSteps(steps);
-//     };
-
-//     return (
-//         <div>
-//             {/* Inputs for Source & Destination */}
-//             <input type="text" placeholder="Source" value={source} onChange={(e) => setSource(e.target.value)} />
-//             <input type="text" placeholder="Destination" value={destination} onChange={(e) => setDestination(e.target.value)} />
-//             <button onClick={fetchOptimizedRoute}>Find Best Route</button>
-
-//             {/* Map Container (Always Visible) */}
-//             <LoadScript googleMapsApiKey="AIzaSyByngCvU0KITYYtIITq4CKlZTnruya53UA">
-//                 <GoogleMap mapContainerStyle={containerStyle} center={center} zoom={12}>
-//                     {directions.map((direction, index) => (
-//                         <DirectionsRenderer 
-//                             key={index} 
-//                             directions={direction} 
-//                             options={{
-//                                 polylineOptions: {
-//                                     strokeColor: index === bestRouteIndex ? "blue" : ["red", "green", "purple"][index % 3], 
-//                                     strokeOpacity: 0.8,
-//                                     strokeWeight: index === bestRouteIndex ? 6 : 4,
-//                                 }
-//                             }}
-//                         />
-//                     ))}
-//                     {evStations.map((station, index) => (
-//                         <Marker 
-//                             key={index} 
-//                             position={{ lat: station[1], lng: station[2] }} 
-//                             label={{
-//                                 text: "⚡",  
-//                                 fontSize: "18px",
-//                                 color: "blue",
-//                             }}
-//                         />
-//                     ))}
-//                 </GoogleMap>
-//             </LoadScript>
-
-//             {/* Route Info & "View Directions" Button */}
-//             {distance && travelTime && (
-//                 <div>
-//                     <h3>Optimized Route Details:</h3>
-//                     <p><strong>Distance:</strong> {distance}</p>
-//                     <p><strong>Estimated Travel Time:</strong> {travelTime}</p>
-//                     <p><strong>Traffic Conditions:</strong> {traffic}</p>
-//                     <button onClick={() => setIsModalOpen(true)}>View Directions</button>
-//                 </div>
-//             )}
-
-//             {/* Modal for Written Directions */}
-//             {isModalOpen && (
-//                 <div className="modal-overlay">
-//                     <div className="modal-content">
-//                         <button className="close-btn" onClick={() => setIsModalOpen(false)}>X</button>
-//                         <h3>Turn-by-Turn Directions:</h3>
-//                         <ul>
-//                             {routeSteps.map((step, index) => (
-//                                 <li key={index}>
-//                                     <strong>{step.instruction}</strong> - {step.distance}, {step.duration}
-//                                 </li>
-//                             ))}
-//                         </ul>
-//                     </div>
-//                 </div>
-//             )}
-
-//             {/* Basic CSS for Modal */}
-//             <style>{`
-//                 .modal-overlay {
-//                     position: fixed;
-//                     top: 0;
-//                     left: 0;
-//                     width: 100%;
-//                     height: 100%;
-//                     background: rgba(0, 0, 0, 0.5);
-//                     display: flex;
-//                     justify-content: center;
-//                     align-items: center;
-//                 }
-//                 .modal-content {
-//                     background: white;
-//                     padding: 20px;
-//                     border-radius: 10px;
-//                     width: 50%;
-//                     max-height: 70%;
-//                     overflow-y: auto;
-//                     text-align: left;
-//                     position: relative;
-//                 }
-//                 .close-btn {
-//                     position: absolute;
-//                     top: 10px;
-//                     right: 15px;
-//                     background: red;
-//                     color: white;
-//                     border: none;
-//                     padding: 5px 10px;
-//                     cursor: pointer;
-//                     border-radius: 5px;
-//                 }
-//                 .close-btn:hover {
-//                     background: darkred;
-//                 }
-//             `}</style>
-//         </div>
-//     );
-// };
-
-// export default MapComponent;
-// AIzaSyByngCvU0KITYYtIITq4CKlZTnruya53UA
 
 import React, { useState } from "react";
 import {
@@ -207,8 +9,9 @@ import {
 import axios from "axios";
 
 const containerStyle = {
-  width: "100%",
+  flex: "1", // Ensures it fills available space
   height: "600px",
+  minWidth: "60%",
 };
 
 const center = {
@@ -309,7 +112,6 @@ const GoogleMapPage = () => {
           `🧬 GA Optimized Route:\n${gaBreakdown.breakdown}\n` +
           `📢 Reason: GA chooses routes not just based on distance and duration, but also on the availability of stops, EV stations, and traffic conditions — ensuring reliability for long-haul logistics.\n`
         );
-        
 
         const directionsResult = await new window.google.maps.DirectionsService().route({
           origin: source,
@@ -321,15 +123,6 @@ const GoogleMapPage = () => {
     } catch (err) {
       console.error(err);
     }
-  };
-
-  const handlePrint = () => {
-    const printWindow = window.open('', '', 'height=600,width=800');
-    printWindow.document.write('<html><head><title>Score Report</title></head><body>');
-    printWindow.document.write(`<pre>${scoreInfo}</pre>`);
-    printWindow.document.write('</body></html>');
-    printWindow.document.close();
-    printWindow.print();
   };
 
   return (
@@ -355,51 +148,29 @@ const GoogleMapPage = () => {
         </button>
       </div>
 
-      <LoadScript googleMapsApiKey="AIzaSyByngCvU0KITYYtIITq4CKlZTnruya53UA">
-        <GoogleMap mapContainerStyle={containerStyle} center={center} zoom={5}>
-          {directions && <DirectionsRenderer directions={directions} />}
+      <div style={styles.mapAndScoreContainer}>
+        <LoadScript googleMapsApiKey="AIzaSyByngCvU0KITYYtIITq4CKlZTnruya53UA">
+          <GoogleMap mapContainerStyle={containerStyle} center={center} zoom={5}>
+            {directions && <DirectionsRenderer directions={directions} />}
+            {routes.length > 0 &&
+              routes[selectedRouteIndex].ev_stations.map((station, index) => (
+                <Marker
+                  key={`ev-${index}`}
+                  position={{ lat: station.lat, lng: station.lng }}
+                  icon={{
+                    url: "/ev-icon.png",
+                    scaledSize: new window.google.maps.Size(35, 35),
+                  }}
+                  title={`EV Station: ${station.name}`}
+                />
+              ))}
+          </GoogleMap>
+        </LoadScript>
 
-          {/* EV Stations along route */}
-          {routes.length > 0 &&
-            routes[selectedRouteIndex].ev_stations.map((station, index) => (
-              <Marker
-                key={`ev-${index}`}
-                position={{ lat: station.lat, lng: station.lng }}
-                icon={{
-                  url: "/deepblue presentation (1).png", // Add your custom icon in public folder
-                  scaledSize: new window.google.maps.Size(35, 35),
-                }}
-                title={`EV Station: ${station.name}`}
-              />
-            ))}
-
-          {/* Sample Stops */}
-          {routes.length > 0 &&
-            routes[selectedRouteIndex].sample_spots.map((spot, index) => (
-              <Marker
-                key={`spot-${index}`}
-                position={{
-                  lat: spot.location.lat,
-                  lng: spot.location.lng,
-                }}
-                icon={{
-                  url: "https://cdn-icons-png.flaticon.com/512/684/684908.png",
-                  scaledSize: new window.google.maps.Size(30, 30),
-                }}
-                title={`Sample Stop: ${spot.name}`}
-              />
-            ))}
-        </GoogleMap>
-      </LoadScript>
-
-      <div style={styles.scoreSection}>
-        <h3>Scoring Breakdown & Reasoning</h3>
-        <pre style={{ whiteSpace: "pre-wrap" }}>{scoreInfo}</pre>
-        {scoreInfo && (
-          <button style={styles.printBtn} onClick={handlePrint}>
-            Print Score Report (PDF)
-          </button>
-        )}
+        <div style={styles.scoreSection}>
+          <h3>Scoring Breakdown & Reasoning</h3>
+          <pre style={{ whiteSpace: "pre-wrap" }}>{scoreInfo}</pre>
+        </div>
       </div>
     </div>
   );
@@ -416,9 +187,9 @@ const styles = {
     marginBottom: "20px",
   },
   inputContainer: {
-    marginBottom: "20px",
     display: "flex",
     gap: "10px",
+    marginBottom: "20px",
   },
   input: {
     padding: "10px",
@@ -434,21 +205,16 @@ const styles = {
     borderRadius: "4px",
     cursor: "pointer",
   },
+  mapAndScoreContainer: {
+    display: "flex",
+    gap: "20px",
+  },
   scoreSection: {
-    marginTop: "30px",
+    width: "35%",
     padding: "20px",
     backgroundColor: "#fff",
     borderRadius: "8px",
     boxShadow: "0px 0px 10px rgba(0,0,0,0.05)",
-  },
-  printBtn: {
-    marginTop: "10px",
-    padding: "8px 15px",
-    backgroundColor: "#4caf50",
-    color: "white",
-    border: "none",
-    borderRadius: "4px",
-    cursor: "pointer",
   },
 };
 
